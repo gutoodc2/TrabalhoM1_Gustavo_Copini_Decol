@@ -6,12 +6,15 @@
 package trabalho_m1;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -26,7 +29,8 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
     
     //Criando uma coleção dos itens para colocar nos combos box
     ObservableList<String> disciplinasList = FXCollections
-                            .observableArrayList("");
+                            .observableArrayList("Arquitetura de Computadores II",
+                                                "Programação Orientada a Obejtos");
     ObservableList<String> mediaList = FXCollections
                             .observableArrayList("M1","M2","M3");
     
@@ -35,6 +39,12 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
     
     @FXML
     private ComboBox mediaBox;
+    
+    @FXML
+    private TextField nomeAvaliacao;
+    
+    @FXML
+    private TextField pesoAvaliacao;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -49,6 +59,19 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
     public void voltarAvaliacoes(ActionEvent evento){
         GerenciadorJanela.obterInstancia().voltar();
         //System.out.println(disciplinasBox.getValue());
+    }
+    
+    @FXML
+    public void salvarAvaliacao(ActionEvent evento){
+        System.out.println("Entrou aqui");
+        Avaliacao ava = new Avaliacao();
+        ava.setNome(nomeAvaliacao.getText());
+        double peso = Double.parseDouble(pesoAvaliacao.getText());
+        ava.setPeso(peso);
+        ava.setDisciplina((String) disciplinasBox.getValue());
+        ava.setMedia(((String)mediaBox.getValue()).toCharArray());
+        ava.salvar();
+        GerenciadorJanela.obterInstancia().voltar();
     }
     
 }
