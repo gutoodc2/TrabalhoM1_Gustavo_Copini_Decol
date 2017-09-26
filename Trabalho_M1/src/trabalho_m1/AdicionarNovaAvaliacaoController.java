@@ -6,9 +6,7 @@
 package trabalho_m1;
 
 import java.net.URL;
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -69,7 +67,7 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
         double peso = Double.parseDouble(pesoAvaliacao.getText());
         ava.setPeso(peso);
         ava.setDisciplina((String) disciplinasBox.getValue());
-        ava.setMedia(((String)mediaBox.getValue()).toCharArray());
+        ava.setMedia((String)mediaBox.getValue());
         ava.salvar();
         GerenciadorJanela.obterInstancia().voltar();
     }

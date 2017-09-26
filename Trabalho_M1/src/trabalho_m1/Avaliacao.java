@@ -13,7 +13,7 @@ public class Avaliacao {
     private String nome;
     private String disciplina;
     private Double peso;
-    private char[]media = new char[2];
+    private String media;
     private Double nota;
     private int identificadorNoArquivo;
     
@@ -68,7 +68,7 @@ public class Avaliacao {
     /**
      * @param media the media to set
      */
-    public void setMedia(char[] media) {
+    public void setMedia(String media) {
         this.media = media;
     }
 
