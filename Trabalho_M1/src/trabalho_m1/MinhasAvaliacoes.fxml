@@ -8,13 +8,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TableView layoutX="14.0" layoutY="42.0" prefHeight="316.0" prefWidth="572.0">
+      <TableView fx:id="tabela" layoutX="14.0" layoutY="42.0" prefHeight="316.0" prefWidth="572.0">
         <columns>
-          <TableColumn prefWidth="180.0" text="Nome" />
-          <TableColumn prefWidth="254.0" text="Disciplina" />
-            <TableColumn minWidth="0.0" prefWidth="48.0" text="Média" />
-            <TableColumn prefWidth="44.0" text="Peso" />
-            <TableColumn prefWidth="44.0" text="Nota" />
+          <TableColumn fx:id="nome" prefWidth="180.0" text="Nome" />
+          <TableColumn fx:id="disciplina" prefWidth="254.0" text="Disciplina" />
+            <TableColumn fx:id="media" minWidth="0.0" prefWidth="48.0" text="Média" />
+            <TableColumn fx:id="peso" prefWidth="44.0" text="Peso" />
+            <TableColumn fx:id="nota" prefWidth="44.0" text="Nota" />
         </columns>
       </TableView>
       <Button layoutX="14.0" layoutY="360.0" mnemonicParsing="false" onAction="#voltarJanelaInicial" prefHeight="26.0" prefWidth="60.0" text="Voltar">

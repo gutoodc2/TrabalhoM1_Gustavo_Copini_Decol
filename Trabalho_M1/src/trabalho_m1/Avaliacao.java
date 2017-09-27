@@ -1,10 +1,16 @@
 package trabalho_m1;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -31,16 +37,53 @@ public class Avaliacao {
  
         
     }
+    //Atualiza os dados da tabela quando inserir nota
+    /*public void atualizar(){
     
-    public void atualizar(){
+    }*/
     
-    }
-    
-    /*static public void ArrayList<Avaliacao> obterListaAvaliacoes(){
+    //Joga os dados na tabela
+    // nomedisciplina, media, nome atividade, peso, nota
+    static public ArrayList<Avaliacao> obterListaAvaliacoes(){
         
+        ArrayList <Avaliacao> avaliacoes =  new ArrayList();
+        try {
+            FileReader arq = new FileReader("listadeavaliacoes.csv");
+            BufferedReader lerArq = new BufferedReader(arq);
+            String linha ;
+            int i=1;
+            
+            //Laço para popular o arraylist com as avaliações
+            while((linha = lerArq.readLine()) != null) {
+                if(linha.trim().equals("")){
+                    continue;
+                }
+                Avaliacao ava = new Avaliacao();
+                String array[] = linha.split(",");
+                
+                //Comando split para quebrar uma string grande em sub strings
+                ava.setDisciplina(array[0]);
+                ava.setMedia(array[1]);
+                ava.setNome(array[2]);
+                double peso = Double.parseDouble(array[3]);
+                ava.setPeso(peso);
+                ava.setIdentificadorNoArquivo(i);
+ 
+                avaliacoes.add(ava);
+                
+                       
+            }
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(avaliacoes.size());
+        return avaliacoes;
     }
     
-    static public void calculaMediaDaDisciplina(){
+    /*public void calculaMediaDaDisciplina(){
         
     }*/
 
