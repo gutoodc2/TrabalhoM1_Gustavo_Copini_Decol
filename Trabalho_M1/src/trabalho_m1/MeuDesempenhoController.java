@@ -7,8 +7,11 @@ package trabalho_m1;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 
 
 public class MeuDesempenhoController extends InterfaceUsuario {
@@ -17,9 +20,24 @@ public class MeuDesempenhoController extends InterfaceUsuario {
         super("MeuDesempenho.fxml");
     }
     
+    @FXML
+    private ComboBox disciplinasBox;
+    
+    ObservableList<String> disciplinasList = FXCollections
+                          .observableArrayList("Arquitetura de Computadores II",
+                                                "Programação Orientada a Obejtos");
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Desempenho aberto");
+        disciplinasBox.setValue("Selecione a Disciplina");
+        disciplinasBox.setItems(disciplinasList);
+    }
+    
+    @FXML
+    public void mostrarDesempenho(ActionEvent evento){
+        
+        
+        
     }
     
     //Voltando para a primeira tela

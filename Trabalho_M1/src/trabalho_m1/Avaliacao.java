@@ -83,11 +83,12 @@ public class Avaliacao {
         return avaliacoes;
     }
 
-    static public void calculaMediaDaDisciplina(){
+    /*static public double calculaMediaDaDisciplina(){
     
         
         
-    }
+        return ;
+    }*/
     
     /**
      * @param nome the nome to set

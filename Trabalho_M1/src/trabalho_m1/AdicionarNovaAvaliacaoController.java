@@ -46,7 +46,6 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Adicionar Nova Avaliação aberta");
         disciplinasBox.setValue("Selecione a Disciplina");
         disciplinasBox.setItems(disciplinasList);
         mediaBox.setValue("Selecione a Média");
