@@ -121,9 +121,8 @@ public class InformarNotaController extends InterfaceUsuario {
         }
         GerenciadorJanela.obterInstancia().voltar();
          */
-        
         //Jogando todo o arquivo em um arraylist
-        ArrayList<Avaliacao> listaAvaliacoes = new ArrayList();
+        ArrayList<String> listaAvaliacoes = new ArrayList();
         try {
             FileReader arq = new FileReader("listadeavaliacoes.csv");
             BufferedReader lerArq = new BufferedReader(arq);
@@ -134,37 +133,38 @@ public class InformarNotaController extends InterfaceUsuario {
                 if (linha.trim().equals("")) {
                     continue;
                 }
-                Avaliacao ava = new Avaliacao();
-                String array[] = linha.split(",");
-                ava.setDisciplina(array[0]);
-                ava.setMedia(array[1]);
-                ava.setNome(array[2]);
-                double peso = Double.parseDouble(array[3]);
-                ava.setPeso(peso);
-
-                listaAvaliacoes.add(ava);
+                listaAvaliacoes.add(linha);
             }
             //Acessando  o objeto que sera modificado no arraylist
             //File arquivo = new File("listadeavaliacoes.csv");
             //FileWriter lista = new FileWriter("listadeavaliacoes.csv");
+
+            //int j = 0;
+
+            //while(j<listaAvaliacoes.size()){
+            //PRECISO APAGAR A LINHA QUE FICA DELE COM SEM A NOTA
+            //if(j==index){
+            String linhaMod = listaAvaliacoes.get(index);
+            double nota = Double.parseDouble(txtNota.getText());
+            linhaMod = linhaMod + nota + "\n";
+            listaAvaliacoes.set(index, linhaMod);
             
-            int j=0;
-            
-            while(j<listaAvaliacoes.size()){
-                //PRECISO APAGAR A LINHA QUE FICA DELE COM SEM A NOTA
-                if(j==index){
-                    Avaliacao ava = new Avaliacao();
-                    ava = listaAvaliacoes.get(j);
-                    double nota = Double.parseDouble(txtNota.getText());
-                    ava.setNota(nota);
-                    ava.atualizar();
-                }/*else{
-                    Avaliacao ava = new Avaliacao();
-                    ava = listaAvaliacoes.get(j);
-                    ava.salvar();
-                }*/
-                j++;
+            FileWriter novArq = new FileWriter("listadeavaliacoes.csv");
+              
+            for(int j=0; j<listaAvaliacoes.size();j++){
+                
+                novArq.write(listaAvaliacoes.get(j) + "\n");
+                
             }
+            novArq.close();
+            
+            //}else{
+            //    Avaliacao ava = new Avaliacao();
+            //    ava = listaAvaliacoes.get(j);
+            //   ava.salvar();
+            //}
+            //j++;
+            /// }
             //lista.close();
             //String array[] = .split(",");
             //String novaLinha = ava.getDisciplina() + "," + ava.getMedia() + "," + ava.getNome() + "," + ava.getPeso() + "," + txtNota.getText() + "\n";
@@ -176,7 +176,6 @@ public class InformarNotaController extends InterfaceUsuario {
             //double nota = Double.parseDouble(txtNota.getText());
             //ava.setNota(nota);
             //listaAvaliacoes.set(index, ava);
-
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

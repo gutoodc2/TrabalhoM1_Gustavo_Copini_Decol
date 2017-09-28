@@ -26,8 +26,8 @@ public class Avaliacao {
         File arquivo = new File("listadeavaliacoes.csv");
         try {
             FileWriter dado = new FileWriter(arquivo, true);
-            setNota(0.0);
-            String dados = getDisciplina() + "," + getMedia() + "," + getNome() + "," + getPeso() + "," + getNota() + "\n";
+            //setNota(0.0);
+            String dados = getDisciplina() + "," + getMedia() + "," + getNome() + "," + getPeso() + ",0" + "\n";
             dado.write(dados);
             dado.close();
         } catch (IOException ex) {
@@ -38,16 +38,17 @@ public class Avaliacao {
 
     //Atualiza os dados da tabela quando inserir nota
     public void atualizar() {
-        File arquivo = new File("listadeavaliacoes.csv");
+        /*File arquivo = new File("listadeavaliacoes.csv");
         try {
-            FileWriter dado = new FileWriter(arquivo, true);
+            FileWriter dado = new FileWriter(arquivo);
             String dados = getDisciplina() + "," + getMedia() + "," + getNome() + "," + getPeso() + "," + getNota() + "\n";
             dado.write(dados);
             dado.close();
         } catch (IOException ex) {
             Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        */
+        
     }
 
     //Joga os dados na tabela
@@ -74,6 +75,7 @@ public class Avaliacao {
                 double peso = Double.parseDouble(array[3]);
                 ava.setPeso(peso);
                 ava.setIdentificadorNoArquivo(i);
+                System.out.println(array[3]);
                 double nota = Double.parseDouble(array[4]);
                 ava.setNota(nota);
                 avaliacoes.add(ava);
