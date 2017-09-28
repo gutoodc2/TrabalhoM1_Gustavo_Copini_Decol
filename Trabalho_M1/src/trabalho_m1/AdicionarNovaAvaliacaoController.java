@@ -56,7 +56,6 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
     @FXML
     public void voltarAvaliacoes(ActionEvent evento){
         GerenciadorJanela.obterInstancia().voltar();
-        //System.out.println(disciplinasBox.getValue());
     }
     
     @FXML
@@ -69,7 +68,7 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
         ava.setDisciplina((String) disciplinasBox.getValue());
         ava.setMedia((String)mediaBox.getValue());
         ava.salvar();
-        GerenciadorJanela.obterInstancia().voltar();
+        ava.atualizar();
     }
     
 }

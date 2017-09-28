@@ -7,8 +7,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,7 +24,6 @@ public class Avaliacao {
         File arquivo = new File("listadeavaliacoes.csv");
         try {
             FileWriter dado = new FileWriter(arquivo, true);
-            //setNota(0.0);
             String dados = getDisciplina() + "," + getMedia() + "," + getNome() + "," + getPeso() + ",0" + "\n";
             dado.write(dados);
             dado.close();
@@ -36,18 +33,12 @@ public class Avaliacao {
 
     }
 
-    //Atualiza os dados da tabela quando inserir nota
+    //Atualiza tabela
     public void atualizar() {
-        /*File arquivo = new File("listadeavaliacoes.csv");
-        try {
-            FileWriter dado = new FileWriter(arquivo);
-            String dados = getDisciplina() + "," + getMedia() + "," + getNome() + "," + getPeso() + "," + getNota() + "\n";
-            dado.write(dados);
-            dado.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
+       
+        GerenciadorJanela.obterInstancia().voltar(2);
+        MinhasAvaliacoesController proxTela = new MinhasAvaliacoesController();
+        GerenciadorJanela.obterInstancia().abreJanela(proxTela);
         
     }
 
@@ -92,9 +83,12 @@ public class Avaliacao {
         return avaliacoes;
     }
 
-    /*public void calculaMediaDaDisciplina(){
+    static public void calculaMediaDaDisciplina(){
+    
         
-    }*/
+        
+    }
+    
     /**
      * @param nome the nome to set
      */
