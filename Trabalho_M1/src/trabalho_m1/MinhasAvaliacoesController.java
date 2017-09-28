@@ -7,6 +7,7 @@ package trabalho_m1;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,81 +17,62 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+public class MinhasAvaliacoesController extends InterfaceUsuario {
 
-public class MinhasAvaliacoesController extends InterfaceUsuario{
-    
-        
     //Declarando a tabela
     @FXML
-    TableView<Avaliacao> tabela;
+    TableView<Avaliacao> tabelaid;
     @FXML
-    TableColumn<Avaliacao, String> nome;
+    TableColumn<Avaliacao, String> nomeTabela;
     @FXML
-    TableColumn<Avaliacao, String> disciplina;
+    TableColumn<Avaliacao, String> disciplinaTabela;
     @FXML
-    TableColumn<Avaliacao, Double> peso;
+    TableColumn<Avaliacao, Double> pesoTabela;
     @FXML
-    TableColumn<Avaliacao, String> media;
+    TableColumn<Avaliacao, String> mediaTabela;
     @FXML
-    TableColumn<Avaliacao, Double> nota;
-    
-    /*private ObservableList informacoes;
-    
-    private ObservableList inserirTabela(){
-        
-        Avaliacao ava = new Avaliacao();
-        ArrayList <Avaliacao> avaliacoes = ava.obterListaAvaliacoes();
-        
-        ObservableList dado = FXCollections.observableList(avaliacoes);
-        
-        return dado;
-    }*/
+    TableColumn<Avaliacao, Double> notaTabela;
 
-    public MinhasAvaliacoesController(){
+    public MinhasAvaliacoesController() {
         super("MinhasAvaliacoes.fxml");
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        System.out.println("Minhas Avaliações aberto");
-//        Avaliacao ava = new Avaliacao();
-        ArrayList <Avaliacao> avaliacoes = Avaliacao.obterListaAvaliacoes();
-        
-        ObservableList<Avaliacao> listaObservavel = FXCollections.observableArrayList(avaliacoes);
-        
-        
-        nome.setCellValueFactory(new PropertyValueFactory<Avaliacao, String>("nome"));
-        disciplina.setCellValueFactory(new PropertyValueFactory<Avaliacao, String>("disciplina"));
-        tabela.setItems(listaObservavel);
-        
-//        for(int i=0;i<avaliacoes.size();i++){
-//        
-            
-//        
-//        }
-        /*this.informacoes = inserirTabela();
-        tabela.setItems(informacoes);
-        
-        disciplina.setCellValueFactory(new PropertyValueFactory("nome"));*/
+
+        ArrayList<Avaliacao> listaObservadora = Avaliacao.obterListaAvaliacoes();
+        ObservableList<Avaliacao> listaObservavel = FXCollections.observableArrayList();
+        int i=0;
+        while(i<listaObservadora.size()){
+            listaObservavel.add(listaObservadora.get(i));
+            i++;
+        }
+
+        nomeTabela.setCellValueFactory(new PropertyValueFactory<Avaliacao, String>("nome"));
+        disciplinaTabela.setCellValueFactory(new PropertyValueFactory<Avaliacao, String>("disciplina"));
+        mediaTabela.setCellValueFactory(new PropertyValueFactory<Avaliacao, String>("media"));
+        pesoTabela.setCellValueFactory(new PropertyValueFactory<Avaliacao, Double>("peso"));
+        notaTabela.setCellValueFactory(new PropertyValueFactory<Avaliacao, Double>("nota"));
+        tabelaid.setItems(listaObservavel);
         
     }
 
     @FXML
-    public void informarNota(ActionEvent evento){
+    public void informarNota(ActionEvent evento) {
         InformarNotaController telaInformar = new InformarNotaController();
+        telaInformar.setIndex(tabelaid.getSelectionModel().getSelectedItem().getIdentificadorNoArquivo());
         GerenciadorJanela.obterInstancia().abreJanela(telaInformar);
     }
- 
+
     @FXML
-    public void adicionarNovaAvaliacao(ActionEvent evento){
+    public void adicionarNovaAvaliacao(ActionEvent evento) {
         AdicionarNovaAvaliacaoController telaAdicionar = new AdicionarNovaAvaliacaoController();
         GerenciadorJanela.obterInstancia().abreJanela(telaAdicionar);
     }
-    
+
     @FXML
-    public void voltarJanelaInicial(ActionEvent evento){
+    public void voltarJanelaInicial(ActionEvent evento) {
         GerenciadorJanela.obterInstancia().voltar();
     }
-    
+
 }

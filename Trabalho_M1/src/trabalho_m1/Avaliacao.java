@@ -6,8 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -15,78 +13,86 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Avaliacao {
-    
+
     private String nome;
     private String disciplina;
     private Double peso;
     private String media;
     private Double nota;
     private int identificadorNoArquivo;
-    
-    public void salvar(){
-        
-       File arquivo = new File("listadeavaliacoes.csv");
+
+    public void salvar() {
+
+        File arquivo = new File("listadeavaliacoes.csv");
         try {
-            FileWriter dado = new FileWriter(arquivo,true);
-            String dados = disciplina + "," + media + "," + nome + "," + peso + "\n";
+            FileWriter dado = new FileWriter(arquivo, true);
+            setNota(0.0);
+            String dados = getDisciplina() + "," + getMedia() + "," + getNome() + "," + getPeso() + "," + getNota() + "\n";
             dado.write(dados);
-            dado.close(); 
+            dado.close();
         } catch (IOException ex) {
             Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
-        
+
     }
+
     //Atualiza os dados da tabela quando inserir nota
-    /*public void atualizar(){
-    
-    }*/
-    
+    public void atualizar() {
+        File arquivo = new File("listadeavaliacoes.csv");
+        try {
+            FileWriter dado = new FileWriter(arquivo, true);
+            String dados = getDisciplina() + "," + getMedia() + "," + getNome() + "," + getPeso() + "," + getNota() + "\n";
+            dado.write(dados);
+            dado.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     //Joga os dados na tabela
     // nomedisciplina, media, nome atividade, peso, nota
-    static public ArrayList<Avaliacao> obterListaAvaliacoes(){
-        
-        ArrayList <Avaliacao> avaliacoes =  new ArrayList();
+    static public ArrayList<Avaliacao> obterListaAvaliacoes() {
+
+        ArrayList<Avaliacao> avaliacoes = new ArrayList();
         try {
             FileReader arq = new FileReader("listadeavaliacoes.csv");
             BufferedReader lerArq = new BufferedReader(arq);
-            String linha ;
-            int i=1;
-            
+            String linha;
+            int i = 0;
+
             //Laço para popular o arraylist com as avaliações
-            while((linha = lerArq.readLine()) != null) {
-                if(linha.trim().equals("")){
+            while ((linha = lerArq.readLine()) != null) {
+                if (linha.trim().equals("")) {
                     continue;
                 }
                 Avaliacao ava = new Avaliacao();
                 String array[] = linha.split(",");
-                
-                //Comando split para quebrar uma string grande em sub strings
                 ava.setDisciplina(array[0]);
                 ava.setMedia(array[1]);
                 ava.setNome(array[2]);
                 double peso = Double.parseDouble(array[3]);
                 ava.setPeso(peso);
                 ava.setIdentificadorNoArquivo(i);
- 
+                double nota = Double.parseDouble(array[4]);
+                ava.setNota(nota);
                 avaliacoes.add(ava);
-                
-                       
+                i++;
+
             }
-            
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Avaliacao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(avaliacoes.size());
+
         return avaliacoes;
     }
-    
+
     /*public void calculaMediaDaDisciplina(){
         
     }*/
-
     /**
      * @param nome the nome to set
      */
@@ -127,5 +133,47 @@ public class Avaliacao {
      */
     public void setIdentificadorNoArquivo(int identificadorNoArquivo) {
         this.identificadorNoArquivo = identificadorNoArquivo;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @return the disciplina
+     */
+    public String getDisciplina() {
+        return disciplina;
+    }
+
+    /**
+     * @return the peso
+     */
+    public Double getPeso() {
+        return peso;
+    }
+
+    /**
+     * @return the media
+     */
+    public String getMedia() {
+        return media;
+    }
+
+    /**
+     * @return the nota
+     */
+    public Double getNota() {
+        return nota;
+    }
+
+    /**
+     * @return the identificadorNoArquivo
+     */
+    public int getIdentificadorNoArquivo() {
+        return identificadorNoArquivo;
     }
 }
