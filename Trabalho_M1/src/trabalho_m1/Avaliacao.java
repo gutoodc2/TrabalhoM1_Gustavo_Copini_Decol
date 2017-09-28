@@ -35,11 +35,11 @@ public class Avaliacao {
 
     //Atualiza tabela
     public void atualizar() {
-       
+
         GerenciadorJanela.obterInstancia().voltar(2);
         MinhasAvaliacoesController proxTela = new MinhasAvaliacoesController();
         GerenciadorJanela.obterInstancia().abreJanela(proxTela);
-        
+
     }
 
     //Joga os dados na tabela
@@ -83,13 +83,11 @@ public class Avaliacao {
         return avaliacoes;
     }
 
-    /*static public double calculaMediaDaDisciplina(){
-    
-        
-        
-        return ;
-    }*/
-    
+    static public Double calculaMediaDaDisciplina(Double m1, Double m2, Double m3) {
+
+        return (m1 + m2 + m3) / 3;
+    }
+
     /**
      * @param nome the nome to set
      */
