@@ -19,7 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class MinhasAvaliacoesController extends InterfaceUsuario {
 
-    //Declarando a tabela
+    //Declarando a tabela e suas colunas
     @FXML
     TableView<Avaliacao> tabelaid;
     @FXML
@@ -37,6 +37,7 @@ public class MinhasAvaliacoesController extends InterfaceUsuario {
         super("MinhasAvaliacoes.fxml");
     }
 
+    //No initialize são preenchidos os campos da tabela.
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -57,6 +58,7 @@ public class MinhasAvaliacoesController extends InterfaceUsuario {
         
     }
 
+    //Botão que aciona a janela de adicionar nota a uma disciplina
     @FXML
     public void informarNota(ActionEvent evento) {
         InformarNotaController telaInformar = new InformarNotaController();
@@ -64,12 +66,14 @@ public class MinhasAvaliacoesController extends InterfaceUsuario {
         GerenciadorJanela.obterInstancia().abreJanela(telaInformar);
     }
 
+    //Botão que aciona a janela de adicionar uma nova avaliação
     @FXML
     public void adicionarNovaAvaliacao(ActionEvent evento) {
         AdicionarNovaAvaliacaoController telaAdicionar = new AdicionarNovaAvaliacaoController();
         GerenciadorJanela.obterInstancia().abreJanela(telaAdicionar);
     }
 
+    //Botao de voltar a janela principal
     @FXML
     public void voltarJanelaInicial(ActionEvent evento) {
         GerenciadorJanela.obterInstancia().voltar();

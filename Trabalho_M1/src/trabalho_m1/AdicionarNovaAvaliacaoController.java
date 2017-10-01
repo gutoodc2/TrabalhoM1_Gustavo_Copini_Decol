@@ -45,9 +45,11 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
     "ADMINISTRAÇÃO DE NEGÓCIOS DE BASE TECNOLÓGICA","TÓP. ESPECIAIS EM INTEGRAÇÃO SOFTWARE HARDWARE",
     "TRABALHO TÉC-CIENTÍFICO DE CONCLUSÃO DE CURSO III","SISTEMAS DISTRIBUÍDOS");
     
+    //Criando uma coleção dos itens para colocar nos combos box
     ObservableList<String> mediaList = FXCollections
                             .observableArrayList("M1","M2","M3");
     
+    //Declarando as variaveis do FXML
     @FXML
     private ComboBox disciplinasBox;
     
@@ -60,6 +62,9 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
     @FXML
     private TextField pesoAvaliacao;
     
+    
+    //Initialize coloca as coleções criadas anteriormente nas devidas comboBox e também coloca
+    //uma mensagem nas mesmas indicando que devem ser selecionadas
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         disciplinasBox.setValue("Selecione a Disciplina");
@@ -68,14 +73,16 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
         mediaBox.setItems(mediaList);
     }
     
+    //Botão para voltar para a janela das avaliações
     @FXML
     public void voltarAvaliacoes(ActionEvent evento){
         GerenciadorJanela.obterInstancia().voltar();
     }
     
+    //Botão responsavel por pegar os dados da avaliação criada pelo usuario, colocar em um objeto e passar
+    //o mesmo para a função salvar na classe avaliação, que ira salvar o mesmo em um arquivo.csv
     @FXML
     public void salvarAvaliacao(ActionEvent evento){
-        System.out.println("Entrou aqui");
         Avaliacao ava = new Avaliacao();
         ava.setNome(nomeAvaliacao.getText());
         double peso = Double.parseDouble(pesoAvaliacao.getText());

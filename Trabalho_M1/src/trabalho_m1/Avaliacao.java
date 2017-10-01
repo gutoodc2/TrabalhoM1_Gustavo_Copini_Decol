@@ -19,6 +19,7 @@ public class Avaliacao {
     private Double nota;
     private int identificadorNoArquivo;
 
+    //Função responsável por salvar os dados da avaliação criada pelo usuário em um arquivo.csv
     public void salvar() {
 
         File arquivo = new File("listadeavaliacoes.csv");
@@ -33,7 +34,8 @@ public class Avaliacao {
 
     }
 
-    //Atualiza tabela
+    //Atualiza a tabela da janela que mostra as avaliações, forçando o inicialize dela a ser "reutilizado"
+    //mostranoa assim, os dados novos
     public void atualizar() {
 
         GerenciadorJanela.obterInstancia().voltar(2);
@@ -42,7 +44,7 @@ public class Avaliacao {
 
     }
 
-    //Joga os dados na tabela
+    //Joga os dados na tabela da janela de avaliações
     // nomedisciplina, media, nome atividade, peso, nota
     static public ArrayList<Avaliacao> obterListaAvaliacoes() {
 
@@ -83,6 +85,7 @@ public class Avaliacao {
         return avaliacoes;
     }
 
+    //Função que calcula a média final da disciplina
     static public Double calculaMediaDaDisciplina(Double m1, Double m2, Double m3) {
 
         return (m1 + m2 + m3) / 3;
