@@ -42,7 +42,7 @@ public class MeuDesempenhoController extends InterfaceUsuario {
 
     //Criando uma coleção dos itens para colocar nos combos box
     ObservableList<String> disciplinasList = FXCollections
-            .observableArrayList("ÉTICA EM INFORMÁTICA", "MATEMÁTICA COMPUTACIONAL",
+            .observableArrayList("MATEMÁTICA COMPUTACIONAL",
                     "ALGORITMOS E PROGRAMAÇÃO", "ÁLGEBRA", "INTRODUÇÃO AO CÁLCULO", "INICIAÇÃO TÉCNICO-CIENTÍFICA",
                     "INTRODUÇÃO A ENGENHARIA DE COMPUTAÇÃO", "INTRODUÇÃO À FÍSICA", "CÁLCULO", "ALGORITMOS E PROGRAMAÇÃO II",
                     "CIRCUITOS DIGITAIS", "DESENHO TÉCNICO", "FÍSICA GERAL", "ÁLGEBRA", "CÁLCULO II", "ESTRUTURAS DE DADOS",
@@ -63,7 +63,7 @@ public class MeuDesempenhoController extends InterfaceUsuario {
     //Initialize responsavel por colocar a coleção na comboBox e colocar um texto inicial no mesmo
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        disciplinasBox.setValue("Selecione a Disciplina");
+        disciplinasBox.setValue("ÉTICA EM INFORMÁTICA");
         disciplinasBox.setItems(disciplinasList);
     }
 

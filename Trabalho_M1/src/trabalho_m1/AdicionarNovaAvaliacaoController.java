@@ -27,7 +27,7 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
     
     //Criando uma coleção dos itens para colocar nos combos box
     ObservableList<String> disciplinasList = FXCollections
-                            .observableArrayList("ÉTICA EM INFORMÁTICA","MATEMÁTICA COMPUTACIONAL",
+                            .observableArrayList("MATEMÁTICA COMPUTACIONAL",
     "ALGORITMOS E PROGRAMAÇÃO","ÁLGEBRA","INTRODUÇÃO AO CÁLCULO","INICIAÇÃO TÉCNICO-CIENTÍFICA",
     "INTRODUÇÃO A ENGENHARIA DE COMPUTAÇÃO","INTRODUÇÃO À FÍSICA","CÁLCULO","ALGORITMOS E PROGRAMAÇÃO II",
     "CIRCUITOS DIGITAIS","DESENHO TÉCNICO","FÍSICA GERAL","ÁLGEBRA","CÁLCULO II","ESTRUTURAS DE DADOS",
@@ -67,9 +67,9 @@ public class AdicionarNovaAvaliacaoController extends InterfaceUsuario {
     //uma mensagem nas mesmas indicando que devem ser selecionadas
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        disciplinasBox.setValue("Selecione a Disciplina");
+        disciplinasBox.setValue("ÉTICA EM INFORMÁTICA");
         disciplinasBox.setItems(disciplinasList);
-        mediaBox.setValue("Selecione a Média");
+        mediaBox.setValue("M1");
         mediaBox.setItems(mediaList);
     }
     
